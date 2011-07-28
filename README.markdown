@@ -14,12 +14,12 @@ js:routes is a simple `rake task` that gives you access to your Rails routes on 
 js:routes is a single file you can place into your `lib/tasks` directory to give you access to the `js:routes` rake task.  This task provides your rails-style routes on the client side.
 
     # First, place the js.rake file in /lib/tasks
-    your_app/lib/tasks/js.rake
+    curl https://raw.github.com/ayamomiji/js-routes/master/js.rake > lib/tasks/js.rake
 
     # You can generate your routes file by doing the following:
     rake js:routes
 
-    # The above commands will place the routes in your_app/public/javascripts/rails_routes.js
+    # The above commands will place the routes in your_app/app/assets/javascripts/rails.routes.js
     # You can specify your own filename like so:
 
     rake js:routes[custom_name.js]
