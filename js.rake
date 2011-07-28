@@ -5,7 +5,7 @@ namespace :js do
       puts "Your Rails version is not supported."
       exit 1
     end
-    
+
     filename = args[:filename].blank? ? "rails_routes.js" : args[:filename]
     save_path = "#{Rails.root}/app/assets/javascripts/#{filename}"
 
@@ -15,7 +15,7 @@ namespace :js do
     javascript << routes.map do |route|
       generate_method(route[:name], route[:path])
     end.join(",\n")
-    
+
     javascript << "\n};";
 
     File.open(save_path, "w") { |f| f.write(javascript) }
@@ -26,7 +26,7 @@ end
 def generate_method(name, path)
   compare = /:(.*?)(\/|$)/
   path.sub!(compare, "' + params.#{$1} + '#{$2}") while path =~ compare
-  return "\t#{name}: function(params) {return '#{path}';}"
+  "  function #{name}(params){ return '#{path}' + (params && params.format ? '.' + params.format : ''); }"
 end
 
 def generate_routes
@@ -35,5 +35,5 @@ def generate_routes
   Rails.application.routes.routes.each do |route|
     processed_routes << {:name => route.name.camelize(:lower), :path => route.path.split("(")[0]} unless route.name.nil?
   end
-  return processed_routes
+  processed_routes
 end

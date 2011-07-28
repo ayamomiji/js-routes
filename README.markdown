@@ -47,6 +47,9 @@ You'll notice the inelegant way that the route is being constructed.  js:routes 
         }
     });
 
+Added functionality to specify a format in the route, for example:
+  note_path({format: 'json'}) would result into something like '/note.json'
+
 # Hangups #
 
 * The generated routes don't have anything to do with the associated HTTP Verb.  You need to specify that yourself, as usual, and as demonstrated in the example above.
