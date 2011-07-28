@@ -6,7 +6,7 @@ namespace :js do
       exit 1
     end
 
-    filename = args[:filename].blank? ? "rails_routes.js" : args[:filename]
+    filename = args[:filename].blank? ? "rails.routes.js" : args[:filename]
     save_path = "#{Rails.root}/app/assets/javascripts/#{filename}"
 
     routes = generate_routes
